@@ -1,7 +1,6 @@
 #include<iostream>
 #include<fstream>
 #include "maillage_fr.h"
-#include "ajouter_individu.h"
 #include "ecriture.h"
 
 /*using namespace std;

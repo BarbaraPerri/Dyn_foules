@@ -25,10 +25,12 @@ class donnees
 
   //accesseurs
   int tailles_fr(int);
+  int tailles_bk(int);
+
   vector<sommet*> sommets_fr() {return(Sommets_fr);}
   arete* aretes_fr() {return(Aretes_fr);}
   triangle* triangles_fr() {return(Triangles_fr);}
-  int* tailles_bk() {return(Tailles_bk);}
+
   vector<sommet*> sommets_bk() {return(Sommets_bk);}
   arete* aretes_bk() {return(Aretes_bk);}
   triangle* triangles_bk() {return(Triangles_bk);}

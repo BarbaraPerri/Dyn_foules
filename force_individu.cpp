@@ -2,7 +2,6 @@
 #include <fstream>
 #include"lecture.h"
 #include"ecriture.h"
-#include"ajouter_individu.h"
 #include "routine_un_individu.h"
 
 void force_individu(class individual & S, float Dt){
