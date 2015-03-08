@@ -1,6 +1,6 @@
 #include"lecture.h" //tout ce qu'il faut est inclus dans le .h
 
-using namespace std;
+//using namespace std;
 
 int* lecture_mesh_tailles(const char* file)
 {
@@ -20,7 +20,7 @@ int* lecture_mesh_tailles(const char* file)
 
         fichier >> tailles[1];
         //cout<<tailles[1]<<endl; //on l'affiche pour tester
-        
+
         while(ligne!="Triangles") {getline(fichier,ligne);} //on cherche le mot-clÃ© Triangles
 
         fichier >> tailles[2]; //on rÃ©cupÃ¨re le nombre de triangles
@@ -35,7 +35,7 @@ int* lecture_mesh_tailles(const char* file)
     cerr<< "Impossible d'ouvrir le fichier"<< endl; //message d'erreur
 }
 
-void lecture_mesh(const char* file, sommet* Vertices, arete* Edges, triangle* Triangles)
+void lecture_mesh(const char* file, vector<sommet*> Vertices, arete* Edges, triangle* Triangles)
 {
     ifstream fichier(file, ios::in); //ouverture du fichier en mode lecture
 
@@ -54,7 +54,8 @@ void lecture_mesh(const char* file, sommet* Vertices, arete* Edges, triangle* Tr
         {
             fichier >> x >> y >> ref; //on rÃ©cupÃ¨re les valeurs dans le fichier
             //cout<<x<<" "<<y<<" "<<ref<<endl; //affichage pour test
-            Vertices[i] = sommet(x,y,ref); //on construit les sommets avec valeurs
+            sommet S=sommet(x,y,ref);
+            Vertices.push_back(&S); //on construit les sommets avec valeurs
         }
 
         while(ligne!="Edges"){getline(fichier,ligne);}
@@ -69,7 +70,7 @@ void lecture_mesh(const char* file, sommet* Vertices, arete* Edges, triangle* Tr
             //cout<<val1<<" "<<val2<<" "<<refere<<endl; //affichage pour test
             Edges[i] = arete(val1,val2,refere);
         }
-        
+
         while(ligne!="Triangles"){getline(fichier,ligne);}
 
         int taille_tri;
@@ -121,7 +122,7 @@ float** lecture_sol(const char* file)
     cerr<< "Impossible d'ouvrir le fichier"<< endl; //message d'erreur
 }
 
-struct donnees lecture(const char* mesh, const char* back_mesh, const char* sol)
+/*donnees lecture(const char* mesh, const char* back_mesh, const char* sol)
 {
     int* tailles_fr;
     tailles_fr = lecture_mesh_tailles(mesh);
@@ -159,4 +160,4 @@ struct donnees lecture(const char* mesh, const char* back_mesh, const char* sol)
     delete [] Aretes_bk;
     delete [] Triangles_bk;
     delete [] Triangles_fr;
-}
+}*/
