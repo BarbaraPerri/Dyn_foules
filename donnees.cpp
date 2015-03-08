@@ -33,6 +33,9 @@ donnees::donnees(const char* mesh, const char* back_mesh, const char* sol)
   //cout<<" **** FIN CONSTRUCTEUR DONNEES PB "<<endl;
 }
 
+
+//accesseurs
+
 int donnees::tailles_fr(int i)
 {
   return Tailles_fr[i];
@@ -41,6 +44,28 @@ int donnees::tailles_fr(int i)
 int donnees::tailles_bk(int i)
 {
   return Tailles_bk[i];
+}
+
+sommet* donnees::sommets_fr(int i){
+  return Sommets_fr[i];
+}
+
+
+//fonctions de modification
+
+void donnees::sommets_fr(vector<sommet*> S){
+  Sommets_fr=S;
+}
+
+void donnees::tailles_fr(int a, int b){
+    Tailles_fr[b]=a;
+}
+
+void donnees::ajouter_sommet(float x, float y)
+{
+    sommet S;
+    S.changer(x,y,0);
+    Sommets_fr.push_back(&S);
 }
 
 void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, float gw){
@@ -52,20 +77,6 @@ void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, 
     I.masse(m);
     Sommets_fr.push_back(&I);
 
-}
-
-
-sommet* donnees::sommets_fr(int i){
-  return Sommets_fr[i];
-}
-
-void donnees::sommets_fr(vector<sommet*> S){
-  Sommets_fr=S;
-}
-
-
-void donnees::tailles_fr(int a, int b){
-    Tailles_fr[b]=a;
 }
 
 
@@ -99,11 +110,6 @@ void donnees::ajouter_triangle(triangle t)
 }
 
 
-void donnees::ajouter_sommet(float x, float y)
-{
-    sommet S;
-    S.changer(x,y,0);
-    Sommets_fr.push_back(&S);
-}
+
 
 
