@@ -11,8 +11,9 @@
 using namespace std;
 
 int* lecture_mesh_tailles(const char* file); //renvoie un tableau avec le nombre de sommets, le nombre d'arÃªtes
-void lecture_mesh(const char* file, sommet* Vertices, arete* Edges, triangle* Triangles); //permet d'avoir le tableau des sommets et celui des aretes pour le maillage de devant
+void lecture_mesh(const char* file, vector<sommet*> & Vertices, arete* Edges, triangle* Triangles); //permet d'avoir le tableau des sommets et celui des aretes pour le maillage de devant
 float** lecture_sol(const char* file); //renvoie le tableau avec les distances au sol
+void lecture_back_mesh(const char* file, sommet* Vertices, arete* Edges, triangle* Triangles);
 
 //donnees lecture(const char* mesh, const char* back_mesh, const char* sol);
 

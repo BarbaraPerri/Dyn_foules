@@ -12,19 +12,19 @@ ofstream fichier(fichiertxt, ios::out | ios::trunc );
     {
         fichier<<"MeshVersionFormatted 1"<<endl<<endl;
         fichier<<"Dimension"<<endl<<2<<endl<<endl;
-        int N = D.tailles_fr()[0];
+        int N = D.tailles_fr(0);
         fichier<<"Vertices"<<endl<<N<<endl;
         for (int i=0; i<N; i++)
         {
-            fichier<<D.sommets_fr()[i].x()<<" "<<D.sommets_fr()[i].y()<<" "<<D.sommets_fr()[i].ref()<<endl;//revoir celon ce qui a été décidé dans la classe sommet
+            fichier<<D.sommets_fr(i)->x()<<" "<<D.sommets_fr(i)->y()<<" "<<D.sommets_fr(i)->ref()<<endl;//revoir celon ce qui a été décidé dans la classe sommet
         }
-        int M = D.tailles_fr()[1];
+        int M = D.tailles_fr(1);
         fichier<<endl<<"Edges"<<endl<<M<<endl;
         for (int i=0; i<M; i++)
         {
             fichier<<D.aretes_fr()[i].sommet1()<<" "<<D.aretes_fr()[i].sommet2()<<" "<<D.aretes_fr()[i].ref()<<endl;//revoir celon ce qui a été décidé dans la classe arrete
         }
-        int O=D.tailles_fr()[2];
+        int O=D.tailles_fr(2);
         fichier<<endl<<"Triangles"<<endl<<O<<endl;
         for (int i=0; i<O; i++)
         {

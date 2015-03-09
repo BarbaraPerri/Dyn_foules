@@ -49,9 +49,9 @@ sommet::sommet(const sommet & s){
   yy=s.y();
 }
 
-individual:individual(){
+individual::individual(){
   reff=0;
-  m=0,;
+  m=0;
   rr=0;
   f_max=0;
   gg=0;
@@ -71,7 +71,7 @@ void individual::g(float gw){
   gg=gw;
 }
 
-individual:individual(const individual & i){
+individual::individual(const individual & i){
   reff=i.ref();
   m=i.masse();
   rr=i.r();
@@ -91,7 +91,7 @@ void individual::objectif(float x, float y){
   obj_y=y;
 }
 
-void individual::changer(float x, float y, float vx, float vy, int reff){
+void individual::changer(float x, float y, float vx, float vy, int r){
   xx=x;
   yy=y;
   v_x=vx;

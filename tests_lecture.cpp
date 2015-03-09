@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include "lecture.h"
 #include "donnees.h"
@@ -110,5 +110,5 @@ int main()
     create_text(D,"inner.mesh");*/
 
 
-    return 0;
-}
+/*    return 0;
+}*/

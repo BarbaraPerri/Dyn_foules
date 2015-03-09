@@ -1,6 +1,7 @@
 #ifndef ARETE_H_INCLUDED
 #define ARETE_H_INCLUDED
 #include "sommet2.h"
+#include <vector>
 
 using namespace std;
 
@@ -24,6 +25,7 @@ class arete
 
     //constructeurs
     arete();
+    arete(int sommet1,int sommet2,int refer, vector<sommet*> Sommets);
     arete(int sommet1,int sommet2,int refer, sommet* Sommets);
 
     //accesseurs
@@ -44,5 +46,7 @@ class arete
 bool operator == (arete,arete);
 bool operator < (arete, arete);
 bool compare (arete, arete);
+bool existed_arete(arete, arete*, int);
+int find_arete(arete, arete*, int);
 
 #endif // ARETE_H_INCLUDED
