@@ -45,8 +45,9 @@ int main()
       cout<<endl;
     }
 
-    //D.ajouter_individu(15,15,30,30,70,0.5);
-    //create_text(D,"test.mesh" );
+    create_text(D,"test1.mesh");
+    D.ajouter_individu(15,15,30,30,70,0.5);
+    create_text(D,"test2.mesh");
     //vector<sommet *> S=D.sommets_fr();
     //cout<< S[1]->x()<<" "<<S[1]->y()<<endl;
 

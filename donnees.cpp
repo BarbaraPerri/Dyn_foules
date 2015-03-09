@@ -68,14 +68,15 @@ void donnees::ajouter_sommet(float x, float y)
     Sommets_fr.push_back(&S);
 }
 
-void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, float gw){
-
-    individual I;
-    I.changer((float)x,(float)y,(float)0,(float)0,0);
-    I.objectif(objx,objy);
-    I.g(gw);
-    I.masse(m);
-    Sommets_fr.push_back(&I);
+void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, float gw)
+{
+    Tailles_fr[0]++;
+    individual *I=new individual;
+    I->changer((float)x,(float)y,(float)0,(float)0,0);
+    I->objectif(objx,objy);
+    I->g(gw);
+    I->masse(m);
+    Sommets_fr.push_back(I);
 
 }
 
