@@ -39,8 +39,6 @@ class donnees
 
   float** sol() {return(Sol);}
 
-
-
   //fonctions de modification
   void sommets_fr(vector<sommet*>);
   void tailles_fr(int,int); //tailles_fr(a,b) met a dans Tailles_fr[b].

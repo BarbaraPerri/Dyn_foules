@@ -8,10 +8,10 @@ using namespace std;
 donnees::donnees(const char* mesh, const char* back_mesh, const char* sol)
 {
   Tailles_fr = lecture_mesh_tailles(mesh);
-  vector<sommet *> Sommets_fr;
   Aretes_fr = new arete[Tailles_fr[1]];
   Triangles_fr = new triangle[Tailles_fr[2]];
   lecture_mesh(mesh, Sommets_fr, Aretes_fr, Triangles_fr);
+   //cout<<"fin lecture mesh size sommets "<<Sommets_fr.size()<<endl;
    //cout<<" Initialisation du maillage back "<<endl;
   Tailles_bk = lecture_mesh_tailles(back_mesh);
    //cout<<" lecture tailles "<<Tailles_bk[0] << " "<<Tailles_bk[1] << " " <<Tailles_bk[2]<<endl;
@@ -21,7 +21,7 @@ donnees::donnees(const char* mesh, const char* back_mesh, const char* sol)
    //cout<< " alloc aretes back ok "<<endl;
   Triangles_bk = new triangle[Tailles_bk [2]];
    //cout<< " alloc triangles back ok "<<endl;
-  lecture_mesh(back_mesh, Sommets_bk , Aretes_bk, Triangles_bk);
+  //lecture_mesh(back_mesh, Sommets_bk , Aretes_bk, Triangles_bk);
    //cout<< " lecture mesh back ok "<<endl;
    //cout<< " premier sommet "<<endl;
    //cout<< " dernier sommet "<<endl;

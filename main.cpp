@@ -7,6 +7,14 @@ using namespace std;
 
 int main()
 {
+    cout<<"test vector"<<endl;
+    vector<int> V;
+    V.push_back(1);
+    V.push_back(2);
+    cout<<"premier élément de V : "<<V[0]<<endl;
+    cout<<"premier élément de V : "<<V[1]<<endl<<endl;
+
+
     donnees D=donnees("simple_geo.empty.mesh","simple_geo.back.mesh", "simple_geo.dist_wall.sol");
 
     //test des differents accesseurs.
@@ -22,8 +30,6 @@ int main()
 
     cout<<"test de la liste de Sommets_fr:"<<endl;
 
-    //cette partie cause une erreur de segmentation, on ne peut acceder a aucun élément de vector<sommet *> Sommets_fr via les deux acceseurs que l'on a
-    /*
     int N=D.tailles_fr(0);
     cout<<"liste Sommets_fr:"<<endl;
     for (int i=0; i<N; i++)
@@ -37,7 +43,7 @@ int main()
         cout<<" g: "<<D.sommets_fr(i)->gw();
       }
       cout<<endl;
-    }*/
+    }
 
     //D.ajouter_individu(15,15,30,30,70,0.5);
     //create_text(D,"test.mesh" );

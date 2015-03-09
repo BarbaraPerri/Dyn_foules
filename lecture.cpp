@@ -35,7 +35,7 @@ int* lecture_mesh_tailles(const char* file)
     cerr<< "Impossible d'ouvrir le fichier"<< endl; //message d'erreur
 }
 
-void lecture_mesh(const char* file, vector<sommet*> Vertices, arete* Edges, triangle* Triangles)
+void lecture_mesh(const char* file, vector<sommet*> &Vertices, arete* Edges, triangle* Triangles)
 {
     ifstream fichier(file, ios::in); //ouverture du fichier en mode lecture
 
@@ -54,11 +54,19 @@ void lecture_mesh(const char* file, vector<sommet*> Vertices, arete* Edges, tria
         {
             fichier >> x >> y >> ref; //on rÃ©cupÃ¨re les valeurs dans le fichier
             //cout<<x<<" "<<y<<" "<<ref<<endl; //affichage pour test
-            sommet S=sommet(x,y,ref);
-            Vertices.push_back(&S); //on construit les sommets avec valeurs
+            sommet *S= new sommet(x,y,ref);
+              //cout<<"pour le sommet"<<i<<":"<<endl;
+              //cout<<x<<" "<<y<<" "<<ref<<endl;
+            Vertices.push_back(S); //on construit les sommets avec valeurs
+              //cout<<"test de l'affichage :"<<endl;
+              //cout<<Vertices[i]->x()<<" "<<Vertices[i]->y()<<" "<<Vertices[i]->ref()<<endl;
         }
 
         while(ligne!="Edges"){getline(fichier,ligne);}
+
+
+        cout<<Vertices[0]->x()<<" "<<Vertices[0]->y()<<" "<<Vertices[0]->ref()<<endl;
+        cout<<Vertices[11]->x()<<" "<<Vertices[11]->y()<<" "<<Vertices[11]->ref()<<endl;
 
         int taille_edge;
         fichier >> taille_edge;
