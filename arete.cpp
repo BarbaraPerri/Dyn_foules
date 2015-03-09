@@ -22,6 +22,7 @@ arete::arete(int sommet1, int sommet2, int refer, sommet* Sommets)
     reference = refer;
 }
 
+<<<<<<< HEAD
 arete::arete(int sommet1, int sommet2, int refer, vector<sommet*> Sommets)
 {
     nb1 = sommet1;
@@ -33,6 +34,8 @@ arete::arete(int sommet1, int sommet2, int refer, vector<sommet*> Sommets)
     reference = refer;
 }
 
+=======
+>>>>>>> e1bada03caeb76ebf9c03d48213cd35798f4129c
 void arete::print() const
 {
     cout<<nb1<<" "<<nb2<<" "<<reference<<endl;
@@ -71,6 +74,7 @@ bool compare (arete a, arete b)
     if(d_a<d_b) {return(true);}
     else {return(false);}
 }
+<<<<<<< HEAD
 
 bool existed_arete(arete a,arete* table, int t_a)
 {
@@ -91,3 +95,5 @@ int find_arete(arete a,arete* table, int t_a)
     }
     return 0;//not existed
 }
+=======
+>>>>>>> e1bada03caeb76ebf9c03d48213cd35798f4129c
