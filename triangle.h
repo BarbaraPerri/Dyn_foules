@@ -1,5 +1,6 @@
 #ifndef TRIANGLE_H_INCLUDED
 #define TRIANGLE_H_INCLUDED
+#include "arete.h"
 
 class triangle
 {
@@ -12,6 +13,7 @@ class triangle
 
     public:
 
+    int vivant;
     triangle();
     triangle(int val1, int val2, int val3, int ref);
     void print();
@@ -19,6 +21,10 @@ class triangle
     int sommet2() const {return(nb2);}
     int sommet3() const {return(nb3);}
     int ref() const {return(reference);}
+    triangle & operator = (triangle);
+    bool have_edge(arete);
 };
+bool operator == (triangle, triangle);
+bool operator != (triangle, triangle);
 
 #endif // TRIANGLE_H_INCLUDED
