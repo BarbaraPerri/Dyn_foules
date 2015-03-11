@@ -1,7 +1,7 @@
 #ifndef MAILLAGE_DYN_H_INCLUDED
 #define MAILLAGE_DYN_H_INCLUDED
 #include <iostream>
-#include <list> //LIST des indiciduals
+#include <list>
 
 using namespace std;
 
@@ -60,7 +60,7 @@ class individual:public sommet
   protected:
   //int reff;//0 pour les individu
   float m,rr,f_max,gg;
-  float v_x,v_y/*,xx,xy*/;// À calculer
+  float v_x,v_y;// À calculer
   float obj_x, obj_y; // vd=obj-position
   int His_tri = -1;
   sommet* voisins; //the table of pointer of voisins
@@ -71,12 +71,6 @@ class individual:public sommet
   //constructeurs
   individual();
   individual(const individual &);
-  //individual(T x, T y, int ref):sommet(x,y,ref){ reff=0;};
-  //voisin();// it calcul les voisins dans maillage dynamique
-  //void allou_individual(T a,T b,T c,T d=9.8){m=a;r=b;f_max=c;g=d;cout<<"alloué"<<endl;};
-  //T calcul_fmur(T* maillage_font,T* d_mur);//on trouve lindividual est ou dans le m_font donc sais d_mur
-  //void operator ++();// returns arry of pointers of indi nearby
-  //~individual(){delete voisins[];}
 
   //accesseurs
   float x()const{return xx;};

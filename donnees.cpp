@@ -1,6 +1,7 @@
 #include "donnees.h"
 #include "lecture.h"
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 #include "map.h"
 #include "barycent.h"
@@ -63,6 +64,36 @@ void donnees::ajouter_sommet(sommet* S)
     //S.changer(x,y,0);
     Sommets_fr.push_back(S);
     Tailles_fr[0]++;
+}
+
+
+void donnees::ajouter_individu(int i)
+{
+    Tailles_fr[0]++;
+    individual *I = new individual;
+
+    float x, y, objx, objy, gw, m;
+    cout<<"Veuillez saisir l'abscisse de l'individu "<<i<<":"<<endl;
+    cin>>x;
+    cout<<"son ordonnée:"<<endl;
+    cin>>y;
+    cout<<"l'abscisse de son objectif:"<<endl;
+    cin>>objx;
+    cout<<"l'ordonnée de son objectif:"<<endl;
+    cin>>objy;
+    cout<<"sa masse:"<<endl;
+    cin>>m;
+    cout<<"son indice gw:"<<endl;
+    cin>>gw;
+
+    I->changer(x,y,(float)0,(float)0,0);
+    I->objectif(objx,objy);
+    I->g(gw);
+    I->masse(m);
+    int H_t = first_mate_bk(x, y, *this);
+    I->his_tri(H_t);
+    Sommets_fr.push_back(I);
+
 }
 
 void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, float gw)
@@ -375,6 +406,61 @@ void donnees::inner_aretes_bk()
         }
     }
     //cout<<"The end of inner_aretes "<<endl<<endl;
+}
+
+void donnees::insert(int i/*, const char* fichier*/)
+{
+
+    float x, y, objx, objy, gw, m;
+    cout<<"Veuillez saisir l'abscisse de l'individu "<<i<<":"<<endl;
+    cin>>x;
+    cout<<"son ordonnée:"<<endl;
+    cin>>y;
+    cout<<"l'abscisse de son objectif:"<<endl;
+    cin>>objx;
+    cout<<"l'ordonnée de son objectif:"<<endl;
+    cin>>objy;
+    cout<<"sa masse:"<<endl;
+    cin>>m;
+    cout<<"son indice gw:"<<endl;
+    cin>>gw;
+    ajouter_individu(x,y,objx,objy,m,gw);
+    //on ajoute les coordonnees de l'individu dans le tableau des sommets front
+    //le numero de l'individu est donc tailles_fr[0]
+
+    float* coor_bar; //on cree le tableau des coordonnees barycentriques
+    for(int i=0;i<Tailles_fr[2];i++) //boucle sur les triangles du maillage front
+    {
+        coor_bar = barycent_fr(x, y, Triangles_fr[i],*this);
+        //on recupere les coordonnees barycentriques de l'individu par rapport au triangle en cours
+        if(coor_bar[0]>0 && coor_bar[1]>0 && coor_bar[2]>0) //on se place dans le triangle où est l'individu
+        {
+            triangle tr = Triangles_fr[i];
+            arete a = arete(Tailles_fr[0], tr.sommet1(),0, Sommets_fr);
+            arete b = arete(Tailles_fr[0], tr.sommet2(),0, Sommets_fr);
+            arete c = arete(Tailles_fr[0], tr.sommet3(),0, Sommets_fr);
+            //on cree les trois nouvelles aretes
+            ajouter_arete_fr(a);
+            ajouter_arete_fr(b);
+            ajouter_arete_fr(c);
+            //on les ajoute dans les donnees
+            triangle t1 = triangle(Tailles_fr[0], tr.sommet2(), tr.sommet3(), 1);
+            triangle t2 = triangle(tr.sommet1(), Tailles_fr[0], tr.sommet3(), 1);
+            triangle t3 = triangle(tr.sommet1(), tr.sommet2(), Tailles_fr[0], 1);
+            //on cree les trois nouveaux triangles, orientes dans le bon sens (permutation)
+            enlever_triangle(i);
+            //D.triangles_fr()[i].vivant = 0; //on tue le triangle qui a disparu, remplace par les nouveaux triangles
+            ajouter_triangle(t1);
+            ajouter_triangle(t2);
+            ajouter_triangle(t3);
+            break; //on sort de la boucle for
+            //on ajoute les triangles aux donnees
+
+        }
+    }
+    map<arete, triangle*> reper = construit_map(Aretes_fr, Triangles_fr, Tailles_fr[1], Tailles_fr[2]);
+    update_map(reper);
+    //create_text(*this, fichier); //on cree le fichier texte avec le nouveau maillage dynamique
 }
 
 void donnees::insert(float x, float y, float objx, float objy, float m, float gw, const char* fichier)

@@ -3,35 +3,28 @@
 #include <cmath>
 #include "calcu_force.h"
 #include "barycent.h"
-extern donnees Donnees;
-
+#include "donnees.h"
 typedef float T;
 
-void force_individu(class individual & S, float Dt)
-{
-    if (S.ref()==0)
-    {
-        float f_obj_x = S.gw()*( S.objx() - S.x() - S.vx() );
-        float f_obj_y = S.gw()*( S.objy() - S.y() - S.vy() );
-        float M = S.masse();
-        float VX = S.vx() + (Dt/M)*f_obj_x;
-        float VY = S.vy() + (Dt/M)*f_obj_y;
-        float X = S.x() + Dt*VX;
-        float Y = S.y() + Dt*VY;
-        S.changer(X,Y,VX,VY,0);
-    }
-}
 
 T* distance_wall(T x, T y, donnees Donnees, int depart)//shall give its original position
 {
+    //cout<<endl<<"In the function dist_wall "<<endl;
     map<int,int*> map_voisinT_bk = Donnees.map_voisinT_bk();
     T** Sol_distance = Donnees.sol();
-    int now = mate_bk(x,y,Donnees, depart);
+    int now = mate_bk(x,y,Donnees, depart);// the point is in the nowth tri
+
+    //cout<<"This position is in the "<<now<<"th triangle."<<endl;
     triangle tri = Donnees.triangles_bk()[now];
+
+    //tri.print();
     //////////////////// now is to find the nearest sommet in the triangle //////////////////////////////
     sommet pt_a = Donnees.sommets_bk()[tri.sommet1()-1];
+    //pt_a.print_sommet();
     sommet pt_b = Donnees.sommets_bk()[tri.sommet2()-1];
+    //pt_b.print_sommet();
     sommet pt_c = Donnees.sommets_bk()[tri.sommet3()-1];
+    //pt_c.print_sommet();
 
     T x_tri[3]; T y_tri[3];
     x_tri[0] = pt_a.x();x_tri[1] = pt_b.x();x_tri[2] = pt_c.x();
@@ -40,9 +33,13 @@ T* distance_wall(T x, T y, donnees Donnees, int depart)//shall give its original
     dist_pt[0] = Sol_distance[tri.sommet1()-1][1];
     dist_pt[1] = Sol_distance[tri.sommet2()-1][1];
     dist_pt[2] = Sol_distance[tri.sommet3()-1][1];
+    //cout<<"The distances of the 3 points of the triangle are:"<<endl;
+    //cout<<dist_pt[0]<<"    "<<dist_pt[1]<<"    "<<dist_pt[2]<<"    "<<endl;
 
     T* lambda = barycent_bk(x,y,tri,Donnees);
+    //cout<<"lambda verified"<<endl;
     T** grad_lambda = grad_barycent(x,y,tri,Donnees);
+    //cout<<"grad_lambda verified"<<endl;
 
     T dist=0;T grad_d_x=0;T grad_d_y=0;
     for(int i=0;i<3;i++)
@@ -102,13 +99,11 @@ T* first_distance_wall(T x, T y,donnees Donnees)
     return dist_grad_d;
 }
 
-float* force_obj(float vx,float vy,float obj_x,float obj_y,float g_w)
+float* force_obj(individual* S)
 {
-    float f_obj_x = g_w*(obj_x - vx);
-    float f_obj_y = g_w*(obj_y - vy);
     float* f_obj = new float[2];
-    f_obj[0] = f_obj_x;
-    f_obj[1] = f_obj_y;
+    f_obj[0] = S->gw()*(S->objx() - S->x() - S->vx());
+    f_obj[1] = S->gw()*(S->objy() - S->y() - S->vy());
     return f_obj;
 }
 
@@ -123,25 +118,21 @@ float* force_col(float f_max, float vx,float vy,float x1,float y1,float r,float 
     return f_col;
 }
 
-float* first_force_mur(float f_max, float x, float y,float r, donnees Donnees)
+float* first_force_mur(individual* I, donnees Donnees)
 {
-    float* d_w = first_distance_wall(x,y,Donnees);
-    float f_mur_x = -f_max/(1+(d_w[0]/r)*(d_w[0]/r))*d_w[1];
-    float f_mur_y = -f_max/(1+(d_w[0]/r)*(d_w[0]/r))*d_w[2];
+    float* d_w = first_distance_wall(I->x(),I->y(),Donnees);
     float* f_mur = new float[2];
-    f_mur[0] = f_mur_x;
-    f_mur[1] = f_mur_y;
+    f_mur[0] = -I->fmax()/(1+(d_w[0]/I->r())*(d_w[0]/I->r()))*d_w[1];
+    f_mur[1] = -I->fmax()/(1+(d_w[0]/I->r())*(d_w[0]/I->r()))*d_w[2];
     return f_mur;
 }
 
-float* force_mur(float f_max, float x, float y,float r, donnees Donnees, int depart)
+float* force_mur(individual* I, donnees Donnees)
 {
-    float* d_w = distance_wall(x,y,Donnees,depart);
-    float f_mur_x = -f_max/(1+(d_w[0]/r)*(d_w[0]/r))*d_w[1];
-    float f_mur_y = -f_max/(1+(d_w[0]/r)*(d_w[0]/r))*d_w[2];
+    float* d_w = distance_wall(I->x(),I->y(),Donnees,I->his_tri());
     float* f_mur = new float[2];
-    f_mur[0] = f_mur_x;
-    f_mur[1] = f_mur_y;
+    f_mur[0] = -I->fmax()/(1+(d_w[0]/I->r())*(d_w[0]/I->r()))*d_w[1];
+    f_mur[1] = -I->fmax()/(1+(d_w[0]/I->r())*(d_w[0]/I->r()))*d_w[2];
     return f_mur;
 }
 

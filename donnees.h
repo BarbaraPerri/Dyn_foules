@@ -50,6 +50,7 @@ class donnees
   void tailles_fr(int,int); //tailles_fr(a,b) met a dans Tailles_fr[b].
   //void ajouter_sommet(float, float, int);
   void ajouter_sommet(sommet*);
+  void ajouter_individu(int);
   void ajouter_individu(float, float,float, float, float, float);
   void ajouter_arete_fr(arete);
   void enlever_arete(arete);
@@ -60,7 +61,8 @@ class donnees
   void update_map(map<arete, triangle*>);
   void inner_aretes_fr();
   void inner_aretes_bk();
-  void insert(float x, float y, float objx, float objy, float m, float gw, const char* fichier);
+  void insert(int);
+  void insert(float, float, float, float, float, float, const char*);
   void swap(const char* file);
 
   //fonctions d'impression
