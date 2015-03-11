@@ -63,7 +63,7 @@ class donnees
   void inner_aretes_bk();
   void insert(int);
   void insert(float, float, float, float, float, float, const char*);
-  void swap(const char* file);
+  void swap(const char * file);
 
   //fonctions d'impression
   void print_map_fr();

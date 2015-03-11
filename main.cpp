@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <stdio.h>
 #include "donnees.h"
 #include <vector>
 #include "ecriture.h"
@@ -98,39 +99,27 @@ int main()
     }
     create_text(D,"Simulation0.mesh");
 
+    int T;
+    cout<<"Entrez le temps de simulation souhaité :"<<endl;
+    cin>>T;
+
     //debut de la routine:
     N=D.tailles_fr(0);
-    for (int i=0; i<N; i++)
+    for (int j=1; j<=T; j++)
     {
-        if(D.sommets_fr(i)->ref()==0)
-        {
-            individual * I=(individual*)D.sommets_fr(i);
-            force_individu(I, dt, D);
-        }
+      for (int i=0; i<N; i++)
+      {
+          if(D.sommets_fr(i)->ref()==0)
+          {
+              individual * I=(individual*)D.sommets_fr(i);
+              force_individu(I, dt, D);
+          }
+      }
+
+      char Namefile[258];
+      sprintf(Namefile, "simulation%d.mesh", j);
+      D.swap(Namefile);
     }
-    char * NameFile="Simulation.mesh";
-    /*char * NameFile2;
-    sprintf(NameFile2, (char)i);
-    Namefile+=Namefile2;*/
-    //Namefile+=".mesh";
-    D.swap(NameFile);
-
-
-    /*
-    sommet* S = new sommet(15,15,1);
-    D.ajouter_sommet(S);
-    D.insert(60,2,70,0,2,3,"test_insert.mesh");
-    D.ajouter_sommet(15,15,0);
-    create_text(D,"test_ajouter.mesh");
-    D.sommets_fr()[12]->print_sommet();
-    cout<<D.sommets_fr().size()<<endl;
-    D.aretes_fr()[23].print();
-    D.swap("test_swap.mesh");
-    D.sommets_fr()[12]->print_sommet();
-    create_text(D,"test.mesh");
-    vector<sommet *> S=D.sommets_fr();
-    cout<< S[1]->x()<<" "<<S[1]->y()<<endl;
-    */
 
     return 0;
 }

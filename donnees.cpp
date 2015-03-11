@@ -504,7 +504,7 @@ void donnees::insert(float x, float y, float objx, float objy, float m, float gw
     create_text(*this, fichier); //on cree le fichier texte avec le nouveau maillage dynamique
 }
 
-void donnees::swap(const char* file)
+void donnees::swap(const char * file)
 {
     map<arete,triangle*> reper = Reper_fr;//on recupere Reper_fr
     map<arete,triangle*> reper2;
