@@ -51,6 +51,8 @@ class sommet // means the dynamic mesh
   virtual void masse(float);
   virtual void g(float);
   virtual void objectif(float, float);
+  virtual void rayon(float);
+  virtual void fmax(float);
 
 };
 
@@ -97,6 +99,8 @@ class individual:public sommet
   void objectif(float, float);
   void changer(float, float, float, float, int);//position vitesse ref
   void his_tri(int num_tri){His_tri = num_tri;}
+  void rayon(float r){rr=r;}
+  void fmax(float f){f_max=f;}
 };
 #endif
 #ifndef SOMMET2_H_INCLUDED

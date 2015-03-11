@@ -83,7 +83,7 @@ int main()
     if (test_ecriture==1)
     {
       create_text(D,"test1.mesh");
-      D.ajouter_individu(15,15,30,30,70,0.5);
+      D.ajouter_individu(15,15,30,30,70,0,0,0.5);
       create_text(D,"test2.mesh");
       distance_wall(15,15,D);
     }

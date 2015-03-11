@@ -51,7 +51,7 @@ class donnees
   //void ajouter_sommet(float, float, int);
   void ajouter_sommet(sommet*);
   void ajouter_individu(int);
-  void ajouter_individu(float, float,float, float, float, float);
+  void ajouter_individu(float, float,float, float, float, float,float,float);
   void ajouter_arete_fr(arete);
   void enlever_arete(arete);
   void ajouter_arete_bk(arete);
@@ -62,7 +62,7 @@ class donnees
   void inner_aretes_fr();
   void inner_aretes_bk();
   void insert(int);
-  void insert(float, float, float, float, float, float, const char*);
+  void insert(float, float, float, float, float, float,float,float, const char*);
   void swap(const char * file);
 
   //fonctions d'impression

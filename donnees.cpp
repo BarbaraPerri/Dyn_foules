@@ -72,7 +72,7 @@ void donnees::ajouter_individu(int i)
     Tailles_fr[0]++;
     individual *I = new individual;
 
-    float x, y, objx, objy, gw, m;
+    float x, y, objx, objy, gw, m, r, f;
     cout<<"Veuillez saisir l'abscisse de l'individu "<<i<<":"<<endl;
     cin>>x;
     cout<<"son ordonnée:"<<endl;
@@ -85,18 +85,24 @@ void donnees::ajouter_individu(int i)
     cin>>m;
     cout<<"son indice gw:"<<endl;
     cin>>gw;
+    cout<<"son rayon caractéristique:"<<endl;
+    cin>>r;
+    cout<<"le f-max lui correspondant:"<<endl;
+    cin>>f;
 
     I->changer(x,y,(float)0,(float)0,0);
     I->objectif(objx,objy);
     I->g(gw);
     I->masse(m);
+    I->rayon(r);
+    I->fmax(f);
     int H_t = first_mate_bk(x, y, *this);
     I->his_tri(H_t);
     Sommets_fr.push_back(I);
 
 }
 
-void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, float gw)
+void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, float gw,float r, float f)
 {
     Tailles_fr[0]++;
     individual *I = new individual;
@@ -104,6 +110,8 @@ void donnees::ajouter_individu(float x,float y,float objx, float objy, float m, 
     I->objectif(objx,objy);
     I->g(gw);
     I->masse(m);
+    I->rayon(r);
+    I->fmax(f);
     int H_t = first_mate_bk(x, y, *this);
     I->his_tri(H_t);
     Sommets_fr.push_back(I);
@@ -411,7 +419,7 @@ void donnees::inner_aretes_bk()
 void donnees::insert(int i/*, const char* fichier*/)
 {
 
-    float x, y, objx, objy, gw, m;
+    float x, y, objx, objy, gw, m,f,r;
     cout<<"Veuillez saisir l'abscisse de l'individu "<<i<<":"<<endl;
     cin>>x;
     cout<<"son ordonnée:"<<endl;
@@ -424,7 +432,12 @@ void donnees::insert(int i/*, const char* fichier*/)
     cin>>m;
     cout<<"son indice gw:"<<endl;
     cin>>gw;
-    ajouter_individu(x,y,objx,objy,m,gw);
+    cout<<"son rayon caractéristique:"<<endl;
+    cin>>r;
+    cout<<"le f-max lui correspondant:"<<endl;
+    cin>>f;
+
+    ajouter_individu(x,y,objx,objy,m,gw,r,f);
     //on ajoute les coordonnees de l'individu dans le tableau des sommets front
     //le numero de l'individu est donc tailles_fr[0]
 
@@ -463,9 +476,9 @@ void donnees::insert(int i/*, const char* fichier*/)
     //create_text(*this, fichier); //on cree le fichier texte avec le nouveau maillage dynamique
 }
 
-void donnees::insert(float x, float y, float objx, float objy, float m, float gw, const char* fichier)
+void donnees::insert(float x, float y, float objx, float objy, float m, float gw,float r,float f, const char* fichier)
 {
-    ajouter_individu(x,y,objx,objy,m,gw);
+    ajouter_individu(x,y,objx,objy,m,gw,r,f);
     //on ajoute les coordonnees de l'individu dans le tableau des sommets front
     //le numero de l'individu est donc tailles_fr[0]
 

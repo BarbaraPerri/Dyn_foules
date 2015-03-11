@@ -51,6 +51,12 @@ sommet::sommet(const sommet & s){
   yy=s.y();
 }
 
+void sommet::rayon(float r){
+}
+
+void sommet::fmax(float f){
+}
+
 
 individual::individual(){
   reff=0;
