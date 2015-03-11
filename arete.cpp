@@ -96,6 +96,6 @@ int find_arete(arete a,arete* table, int t_a)
         if(a==table[i])
         return i;
     }
-    return 0;//not existed
+    return 0;
 }
 

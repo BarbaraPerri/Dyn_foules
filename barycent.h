@@ -6,4 +6,4 @@
 float* barycent_bk(float,float,triangle, donnees);
 float* barycent_fr(float,float,triangle, donnees);
 
-#endif // BARYCENT_H_INCLUDED
+#endif

@@ -3,7 +3,6 @@
 #include <cmath>
 #include "calcu_force.h"
 #include "barycent.h"
-//#include "ecriture.h"
 extern donnees Donnees;
 
 typedef float T;
@@ -25,22 +24,14 @@ void force_individu(class individual & S, float Dt)
 
 T* distance_wall(T x, T y, donnees Donnees, int depart)//shall give its original position
 {
-    //cout<<endl<<"In the function dist_wall "<<endl;
     map<int,int*> map_voisinT_bk = Donnees.map_voisinT_bk();
     T** Sol_distance = Donnees.sol();
-    int now = mate_bk(x,y,Donnees, depart);// the point is in the nowth tri
-
-    //cout<<"This position is in the "<<now<<"th triangle."<<endl;
+    int now = mate_bk(x,y,Donnees, depart);
     triangle tri = Donnees.triangles_bk()[now];
-
-    //tri.print();
     //////////////////// now is to find the nearest sommet in the triangle //////////////////////////////
     sommet pt_a = Donnees.sommets_bk()[tri.sommet1()-1];
-    //pt_a.print_sommet();
     sommet pt_b = Donnees.sommets_bk()[tri.sommet2()-1];
-    //pt_b.print_sommet();
     sommet pt_c = Donnees.sommets_bk()[tri.sommet3()-1];
-    //pt_c.print_sommet();
 
     T x_tri[3]; T y_tri[3];
     x_tri[0] = pt_a.x();x_tri[1] = pt_b.x();x_tri[2] = pt_c.x();
@@ -49,13 +40,9 @@ T* distance_wall(T x, T y, donnees Donnees, int depart)//shall give its original
     dist_pt[0] = Sol_distance[tri.sommet1()-1][1];
     dist_pt[1] = Sol_distance[tri.sommet2()-1][1];
     dist_pt[2] = Sol_distance[tri.sommet3()-1][1];
-    //cout<<"The distances of the 3 points of the triangle are:"<<endl;
-    //cout<<dist_pt[0]<<"    "<<dist_pt[1]<<"    "<<dist_pt[2]<<"    "<<endl;
 
     T* lambda = barycent_bk(x,y,tri,Donnees);
-    //cout<<"lambda verified"<<endl;
     T** grad_lambda = grad_barycent(x,y,tri,Donnees);
-    //cout<<"grad_lambda verified"<<endl;
 
     T dist=0;T grad_d_x=0;T grad_d_y=0;
     for(int i=0;i<3;i++)

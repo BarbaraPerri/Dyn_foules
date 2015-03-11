@@ -15,17 +15,14 @@ int* lecture_mesh_tailles(const char* file)
         while(ligne!="Vertices") {getline(fichier,ligne);} //on cherche le mot-clÃ© Vertices
 
         fichier >> tailles[0]; //on rÃ©cupÃ¨re en lecture la taille du tableau
-        //cout<<tailles[0]<<endl; //on l'affiche pour tester
 
         while(ligne!="Edges") {getline(fichier,ligne);} //on cherche le mot-clÃ© Edges
 
         fichier >> tailles[1];
-        //cout<<tailles[1]<<endl; //on l'affiche pour tester
 
         while(ligne!="Triangles") {getline(fichier,ligne);} //on cherche le mot-clÃ© Triangles
 
         fichier >> tailles[2]; //on rÃ©cupÃ¨re le nombre de triangles
-        //cout<<tailles[2]<<endl; //affichage pour test
 
         return(tailles);
         delete [] tailles;
@@ -48,35 +45,23 @@ void lecture_mesh(const char* file, vector<sommet*> &Vertices, arete* Edges, tri
 
         int taille_vertices; //on initialise la taille du tableau des points
         fichier >> taille_vertices; //on recupere en lecture la taille du tableau
-        //cout<<taille_vertices<<endl; //on l'affiche pour tester
         float x, y;
         int ref;
         for(int i=0;i<taille_vertices;i++)
         {
             fichier >> x >> y >> ref; //on rÃ©cupÃ¨re les valeurs dans le fichier
-            //cout<<x<<" "<<y<<" "<<ref<<endl; //affichage pour test
             sommet *S= new sommet(x,y,ref);
-              //cout<<"pour le sommet"<<i<<":"<<endl;
-              //cout<<x<<" "<<y<<" "<<ref<<endl;
             Vertices.push_back(S); //on construit les sommets avec valeurs
-              //cout<<"test de l'affichage :"<<endl;
-              //cout<<Vertices[i]->x()<<" "<<Vertices[i]->y()<<" "<<Vertices[i]->ref()<<endl;
         }
 
         while(ligne!="Edges"){getline(fichier,ligne);}
 
-
-        //cout<<Vertices[0]->x()<<" "<<Vertices[0]->y()<<" "<<Vertices[0]->ref()<<endl;
-        //cout<<Vertices[11]->x()<<" "<<Vertices[11]->y()<<" "<<Vertices[11]->ref()<<endl;
-
         int taille_edge;
         fichier >> taille_edge;
-        //cout<<taille_edge<<endl; //on l'affiche pour tester
         int val1, val2, refere;
         for(int i=0;i<taille_edge;i++)
         {
             fichier >> val1 >> val2 >> refere;
-            //cout<<val1<<" "<<val2<<" "<<refere<<endl; //affichage pour test
             arete a = arete(val1, val2, refere, Vertices);
             Edges[i] = a;
         }
@@ -85,12 +70,10 @@ void lecture_mesh(const char* file, vector<sommet*> &Vertices, arete* Edges, tri
 
         int taille_tri;
         fichier >> taille_tri;
-        //cout<<taille_tri<<endl; //on l'affiche pour tester
         int v1, v2, v3, r;
         for(int i=0;i<taille_tri;i++)
         {
             fichier >> v1 >> v2 >> v3 >> r;
-            //cout<<val1<<" "<<val2<<" "<<val3<<" "<<refere<<endl; //affichage pour test
             Triangles[i] = triangle(v1,v2,v3,r);
         }
 
@@ -112,37 +95,24 @@ void lecture_back_mesh(const char* file, sommet* Vertices, arete* Edges, triangl
 
         int taille_vertices; //on initialise la taille du tableau des points
         fichier >> taille_vertices; //on recupere en lecture la taille du tableau
-        //cout<<taille_vertices<<endl; //on l'affiche pour tester
         float x, y;
         int ref;
         for(int i=0;i<taille_vertices;i++)
         {
             fichier >> x >> y >> ref; //on rÃ©cupÃ¨re les valeurs dans le fichier
-            //cout<<x<<" "<<y<<" "<<ref<<endl; //affichage pour test
             sommet S = sommet(x,y,ref);
-              //cout<<"pour le sommet"<<i<<":"<<endl;
-              //cout<<x<<" "<<y<<" "<<ref<<endl;
             Vertices[i] = S;; //on construit les sommets avec valeurs
             Vertices[i].Num(i);
-            //cout<<Vertices[i].Num()<<" ";
-              //cout<<"test de l'affichage :"<<endl;
-              //cout<<Vertices[i]->x()<<" "<<Vertices[i]->y()<<" "<<Vertices[i]->ref()<<endl;
         }
 
         while(ligne!="Edges"){getline(fichier,ligne);}
 
-
-        //cout<<Vertices[0].x()<<" "<<Vertices[0].y()<<" "<<Vertices[0].ref()<<endl;
-        //cout<<Vertices[11].x()<<" "<<Vertices[11].y()<<" "<<Vertices[11].ref()<<endl;
-
         int taille_edge;
         fichier >> taille_edge;
-        //cout<<taille_edge<<endl; //on l'affiche pour tester
         int val1, val2, refere;
         for(int i=0;i<taille_edge;i++)
         {
             fichier >> val1 >> val2 >> refere;
-            //cout<<val1<<" "<<val2<<" "<<refere<<endl; //affichage pour test
             arete a = arete(val1,val2,refere,Vertices);
             a.Num(i);
             Edges[i] = a;
@@ -153,12 +123,10 @@ void lecture_back_mesh(const char* file, sommet* Vertices, arete* Edges, triangl
 
         int taille_tri;
         fichier >> taille_tri;
-        //cout<<taille_tri<<endl; //on l'affiche pour tester
         int v1, v2, v3, r;
         for(int i=0;i<taille_tri;i++)
         {
             fichier >> v1 >> v2 >> v3 >> r;
-            //cout<<val1<<" "<<val2<<" "<<val3<<" "<<refere<<endl; //affichage pour test
             Triangles[i] = triangle(v1,v2,v3,r);
         }
 
@@ -190,7 +158,6 @@ float** lecture_sol(const char* file)
         {
             Sol[i] = new float[2];
             fichier >> Sol[i][1] >> Sol[i][2]; //on rÃ©cupÃ¨re les donnÃ©es depuis le fichier
-            //cout<< Sol[i][1] << " "<< Sol[i][2]<<endl;
         }
 
         fichier.close(); //on ferme le fichier

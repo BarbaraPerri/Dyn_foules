@@ -12,21 +12,14 @@ ofstream fichier(fichiertxt, ios::out | ios::trunc );
     {
         fichier<<"MeshVersionFormatted 1"<<endl<<endl;
         fichier<<"Dimension"<<endl<<2<<endl<<endl;
-        //cout<<"trucs chiants ecrits"<<endl;
         int N = D.tailles_fr(0);
-        //cout<<"taille des sommets"<<endl;
         fichier<<"Vertices"<<endl<<N<<endl;
-        //D.sommets_fr()[12]->print_sommet();
         for (int i=0; i<N; i++)
         {
             fichier<<D.sommets_fr(i)->x()<<" "<<D.sommets_fr(i)->y()<<" "<<D.sommets_fr(i)->ref()<<endl;//revoir celon ce qui a été décidé dans la classe sommet
-            //cout<<"sommet "<<i<<" ok"<<endl;
         }
-        //cout<<"fin des sommets"<<endl;
         int M = D.tailles_fr(1);
-        //cout<<"taille allouee"<<endl;
         fichier<<endl<<"Edges"<<endl<<M<<endl;
-        //cout<<"edge ecrit"<<endl;
         for (int i=0; i<M; i++)
         {
             fichier<<D.aretes_fr()[i].sommet1()<<" "<<D.aretes_fr()[i].sommet2()<<" "<<D.aretes_fr()[i].ref()<<endl;//revoir celon ce qui a été décidé dans la classe arrete

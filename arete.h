@@ -30,7 +30,6 @@ class arete
     void Num(int number){num = number;}
 
     //accesseurs
-    //int Num(){return num;}
     int Num(){return num;}
     int sommet1() const {return(nb1);}
     int x1() const {return(abs1);}
@@ -53,4 +52,4 @@ bool compare (arete, arete);
 bool existed_arete(arete, arete*, int);
 int find_arete(arete, arete*, int);
 
-#endif // ARETE_H_INCLUDED
+#endif

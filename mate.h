@@ -12,7 +12,7 @@
 using namespace std;
 typedef float T; // define T as float
 
-//////// On met le maillage au font et triangle les global
+// On met le maillage au font et triangle les global
 
 //T* barycent(float x,float y,triangle A);//A B C sont 3 sommets des triangles
 T** grad_barycent(float x,float y,triangle A,donnees Donnees);

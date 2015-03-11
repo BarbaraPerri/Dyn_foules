@@ -6,15 +6,11 @@
 
 //extern donnees Donnees;
 
-float* barycent_bk(float x,float y,triangle A, donnees Donnees)//A B C sont 3 sommets des triangles
+float* barycent_bk(float x,float y,triangle A, donnees Donnees)
 {
-    //cout<<"In the barycent"<<endl;
     sommet pt_a = Donnees.sommets_bk()[A.sommet1()-1];
-    //pt_a.print_sommet();
     sommet pt_b = Donnees.sommets_bk()[A.sommet2()-1];
-    //pt_b.print_sommet();
     sommet pt_c = Donnees.sommets_bk()[A.sommet3()-1];
-    //pt_c.print_sommet();
 
     float x_a = pt_a.x();
     float x_b = pt_b.x();
@@ -33,20 +29,18 @@ float* barycent_bk(float x,float y,triangle A, donnees Donnees)//A B C sont 3 so
     lambda[0] = lambda_A;
     lambda[1] = lambda_B;
     lambda[2] = lambda_C;
-    //cout<<lambda[0]<<" "<<lambda[1]<<" "<<lambda[2]<<" "<<endl;
-    return lambda;//return un tableau de 3 elements
-    //delete []lambda;Ne détuit pas
+    return lambda;
 }
 
-float* barycent_fr(float x,float y,triangle A, donnees Donnees)//A B C sont 3 sommets des triangles
+float* barycent_fr(float x,float y,triangle A, donnees Donnees)
 {
-    //cout<<"In the barycent"<<endl;
+
     sommet* pt_a = Donnees.sommets_fr()[A.sommet1()-1];
-    //pt_a.print_sommet();
+
     sommet* pt_b = Donnees.sommets_fr()[A.sommet2()-1];
-    //pt_b.print_sommet();
+
     sommet* pt_c = Donnees.sommets_fr()[A.sommet3()-1];
-    //pt_c.print_sommet();
+
 
     float x_a = pt_a->x();
     float x_b = pt_b->x();
@@ -65,8 +59,8 @@ float* barycent_fr(float x,float y,triangle A, donnees Donnees)//A B C sont 3 so
     lambda[0] = lambda_A;
     lambda[1] = lambda_B;
     lambda[2] = lambda_C;
-    //cout<<lambda[0]<<" "<<lambda[1]<<" "<<lambda[2]<<" "<<endl;
-    return lambda;//return un tableau de 3 elements
-    //delete []lambda;Ne détuit pas
+
+    return lambda;
+
 }
 

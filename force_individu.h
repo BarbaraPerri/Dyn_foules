@@ -4,4 +4,4 @@
 void force_individu(class individual* , float );
 
 
-#endif // FORCE_INDIVIDU_H_INCLUDED
+#endif

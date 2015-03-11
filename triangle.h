@@ -23,8 +23,10 @@ class triangle
     int ref() const {return(reference);}
     triangle & operator = (triangle);
     bool have_edge(arete);
+
 };
+
 bool operator == (triangle, triangle);
 bool operator != (triangle, triangle);
 
-#endif // TRIANGLE_H_INCLUDED
+#endif

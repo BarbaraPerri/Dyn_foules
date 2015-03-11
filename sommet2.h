@@ -104,9 +104,9 @@ class individual:public sommet
   void changer(float, float, float, float, int);//position vitesse ref
   void his_tri(int num_tri){His_tri = num_tri;}
 };
-#endif// MAILLAGE_DYN_H_INCLUDED
+#endif
 #ifndef SOMMET2_H_INCLUDED
 #define SOMMET2_H_INCLUDED
-#endif // SOMMET2_H_INCLUDED
+#endif
 
 
